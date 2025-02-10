@@ -4,18 +4,22 @@ import BookList from "./components/BookList";
 import Footer from "./components/Footer";
 import MyNav from "./components/MyNav";
 import Welcome from "./components/Welcome";
+import CommentArea from "./components/CommentArea";
 
 import fantasy from "./data/books/fantasy.json";
 import history from "./data/books/history.json";
 import horror from "./data/books/horror.json";
 import romance from "./data/books/romance.json";
 import scifi from "./data/books/scifi.json";
-import { Button } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 
 class App extends Component {
   state = {
-    books: fantasy
+    books: fantasy,
+    selected: "",
   };
+
+  changeSelected = (asin) => this.setState({ selected: asin });
 
   render() {
     console.log("render App");
@@ -23,7 +27,8 @@ class App extends Component {
       <>
         <MyNav />
         <Welcome />
-        <div className="d-flex justify-content-center gap-1">
+
+        <div className="d-flex justify-content-center gap-1 my-3">
           <Button variant="primary" onClick={() => this.setState({ books: fantasy })}>
             Fantasy
           </Button>
@@ -40,7 +45,18 @@ class App extends Component {
             Scifi
           </Button>
         </div>
-        <BookList books={this.state.books} />
+
+        <Container>
+          <Row>
+            <Col md={8}>
+              <BookList books={this.state.books} selected={this.state.selected} changeSelected={this.changeSelected} />
+            </Col>
+            <Col md={4}>
+              <CommentArea selected={this.state.selected} />
+            </Col>
+          </Row>
+        </Container>
+
         <Footer />
       </>
     );

@@ -5,10 +5,12 @@ import SingleBook from "./SingleBook";
 
 class BookList extends Component {
   state = {
-    searchQuery: ""
+    searchQuery: "",
   };
 
   render() {
+    const checkSelected = (commentPos) => (props.selected === commentPos ? `table-item-selected` : "");
+
     return (
       <Container>
         <Form.Control
