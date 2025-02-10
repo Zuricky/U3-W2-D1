@@ -46,13 +46,13 @@ class App extends Component {
           </Button>
         </div>
 
-        <Container>
+        <Container fluid>
           <Row>
             <Col md={8}>
               <BookList books={this.state.books} selected={this.state.selected} changeSelected={this.changeSelected} />
             </Col>
             <Col md={4}>
-              <CommentArea selected={this.state.selected} />
+              <CommentArea asin={this.state.selected} />
             </Col>
           </Row>
         </Container>

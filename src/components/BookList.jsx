@@ -9,8 +9,6 @@ class BookList extends Component {
   };
 
   render() {
-    const checkSelected = (commentPos) => (props.selected === commentPos ? `table-item-selected` : "");
-
     return (
       <Container>
         <Form.Control
@@ -24,7 +22,7 @@ class BookList extends Component {
           {this.props.books
             .filter((book) => book.title.toLowerCase().includes(this.state.searchQuery.toLowerCase()))
             .map((book) => (
-              <SingleBook key={book.asin} book={book} />
+              <SingleBook key={book.asin} book={book} changeSelected={this.props.changeSelected} selected={this.props.selected} />
             ))}
         </Row>
 

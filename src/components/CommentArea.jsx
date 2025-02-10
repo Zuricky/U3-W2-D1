@@ -43,11 +43,18 @@ class CommentArea extends Component {
 
   render() {
     console.log("RENDER COMMENT AREA", this.state.reviews);
+    if (!this.props.asin) {
+      return (
+        <div className="commentArea">
+          <h6>CommentArea</h6>
+          <p>Seleziona un libro per vedere i commenti.</p>
+        </div>
+      );
+    }
     return (
       <div className="commentArea">
         <h6>CommentArea</h6>
         <CommentList reviews={this.state.reviews} />
-
         <AddComment asin={this.props.asin} />
       </div>
     );
